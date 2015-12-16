@@ -1,0 +1,10 @@
+*~
+*.*.swp
+
+*.db
+*.egg
+*.pyc
+bin/
+*.sqlite3
+aw/local.py
+
