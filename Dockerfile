@@ -1,6 +1,6 @@
 FROM debian
 
-RUN apt-get update && apt-get install -y python-pip
+RUN apt-get update && apt-get install -y python-pip python-dev libjpeg-dev zlib1g-dev
 
 ADD . /src
 WORKDIR /src
