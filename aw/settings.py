@@ -23,6 +23,7 @@ SECRET_KEY = 'your-secret-key'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
+FEINCMS_USE_PAGE_ADMIN=False
 
 ALLOWED_HOSTS = []
 
@@ -37,15 +38,26 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'south',
+
+    'feincms',
+    'mptt',
+    'feincms.module.page',
+    'feincms.module.medialibrary',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
 )
 
 ROOT_URLCONF = 'aw.urls'
