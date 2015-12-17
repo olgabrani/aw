@@ -1,0 +1,88 @@
+{% load applicationcontent_tags %}
+{% load players_extras %}
+ <div class="box">
+    <title>{{ feincms_page.title }}</title>
+     <div class="whitewrap">
+        <div class="content">
+		<h1 class="decorated">{{ APP.title }}</h1>
+		<div class="carousel clearfix">
+			<ul>
+			{% for player in players_carousel %}
+				<li>
+						<div class="wrap-li">
+							<div class="lt">
+								<h4>{{ player.full_name|capfirst }}<br>#{{ player.number|force_two_digit_num }}</h4>
+                                {% if APP.show_options == 'ST' %}
+	                            <table>
+									<tr>
+										<td>SPEED</td>
+										<td><span style="width:{{ player.speed|default_if_none:"0"}}%">&nbsp;<span></td>
+									</tr>
+									<tr>
+										<td>AGILITY</td>
+										<td><span style="width:{{ player.agility|default_if_none:"0"}}%">&nbsp;</span></td>
+									</tr>
+									<tr>
+										<td>SHOOT</td>
+										<td><span style="width:{{ player.shoot|default_if_none:"0"}}%">&nbsp;</span></td>
+									</tr> 
+									<tr>
+										<td>PUCK CONTROL</td>
+										<td><span style="width:{{ player.puck_control|default_if_none:"0"}}%">&nbsp;</span></td>
+									</tr>                                         
+						    	</table>
+                                    {% elif APP.show_options == 'IN' %}
+                                    {{player.info|safe}}
+
+                                {% endif %}
+						</div>
+
+						<div class="rt">
+							<div class="img-wrap">
+								{% if player.roster_image %}
+								<img src="{{ player.roster_image.get_absolute_url }}" alt="{{ player.full_name }}">
+								{% else %}
+								<img src="{{STATIC_URL}}images/katsiki.png" alt="{{ player.fullname }}">
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</li>
+				{% empty %}
+				<li>No roster available</li>
+				{% endfor %}
+				
+			</ul>
+		</div>            
+		{{ APP.main_text|safe }}
+		<table class="roster-table">
+	    	<thead>
+				<tr>
+            		<th>#</th>
+                    <th>Όνομα</th>
+                    <th>Ύψος</th>
+                    <th>Βάρος</th>
+                    <th>Ηλικία</th>
+                    <th>Μπαστούνι</th>
+                </tr>
+			</thead>
+			<tbody>
+                     {% for player in players %}
+                
+                         
+                   <tr>
+                        <td>{{ player.number|force_two_digit_num}}</td>
+                        <td>{{ player.full_name|capfirst }}</td>
+                        <td>{{ player.height}} cm</td>
+                        <td>{{ player.weight }} Kgr</td>
+                        <td>{{ player.birth_date|calculate_age}}</td>
+                        <td>{{ player.stick|translate_stick}}</td>
+                    </tr>
+                   
+                 {% endfor %}         
+                </tbody>
+            </table>
+                    
+        </div>
+     </div>
+</div>

@@ -43,6 +43,8 @@ INSTALLED_APPS = (
     'mptt',
     'feincms.module.page',
     'feincms.module.medialibrary',
+
+    'players',
 )
 
 MIDDLEWARE_CLASSES = (
