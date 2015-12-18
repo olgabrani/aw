@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+SITE_ID = 1
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,9 +24,24 @@ SECRET_KEY = 'your-secret-key'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
-FEINCMS_USE_PAGE_ADMIN=False
 
 ALLOWED_HOSTS = []
+
+MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media/')
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static/')
+STATIC_URL = '/static/'
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    'django.core.context_processors.request',
+)
 
 
 # Application definition
@@ -37,12 +53,15 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'south',
 
     'feincms',
     'mptt',
     'feincms.module.page',
     'feincms.module.medialibrary',
+
+    'aw',
 
     'players',
 )
@@ -55,11 +74,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.request',
 )
 
 ROOT_URLCONF = 'aw.urls'
