@@ -1,0 +1,12 @@
+{% load i18n %}
+{% load feincms_tags applicationcontent_tags %}
+<div class="box">
+     <div class="whitewrap">
+         <div class="content">
+           <h1>{{ new_details.0.headline}}</h1>
+           <p class="date">{{ new_details.0.pub_date|date:'d-m-Y H:i' }}</p>
+	   {{ new_details.0.content|safe }}
+	   <p><a href="../">< {{ back  }}</a></p>
+        </div>
+     </div>
+</div>

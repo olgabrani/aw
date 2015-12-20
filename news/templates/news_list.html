@@ -1,0 +1,46 @@
+{% load applicationcontent_tags %}
+<div class="box">
+    <div class="whitewrap">
+        <div class="content">
+            <h1 class="decorated">Nέα / Ανακοινώσεις</h1>
+            <div class="entries-list">
+                <ul>
+                    {% for new in news %}
+                    <li>
+                        <h2>{{ new.headline }}</h2>
+                        <p class="info">
+                            <em>{{ new.pub_date|date:'d-m-Y H:i' }} </em>
+                        </p>
+                        {% if new.content|length > 180 %}
+                            <p>{{ new.content|safe|truncatechars:180 }}<a href="{{ new.get_absolute_url }}">...{{ show_more }}</a></p>
+                        {% else %}
+                            <p>{{ new.content|safe }}</p>
+                        {% endif %}
+                    /li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="pagination">
+                <ul>
+                    <li class="arrow previous {% if news.has_previous %}{% else %}disable{% endif %}">
+                    {% if news.has_previous %}
+                        <a href="?page={{ news.previous_page_number }}" title="previous page">&nbsp;</a> 
+                    {% else %}
+                        <a>&nbsp;</a>
+                    % endif %}
+                    </li>
+                    {% for num in news.paginator.page_range %} 
+                        <li {% if num == news.number %}class="current"{% endif %}><a href="?page={{ num }}">{{ num}}</a></li>
+                    {% endfor%}
+                    <li class="arrow next {% if news.has_next %}{% else %}disable{% endif %}">
+                    {% if news.has_next %}
+                        <a href="?page={{ news.next_page_number }}" title="next page">&nbsp;</a>
+                    {% else %}
+                        <a>&nbsp;</a>
+                    {% endif %}
+                    </li>
+                </ul>
+            </div>  
+         </div>
+     </div>
+ </div>

@@ -1,0 +1,19 @@
+{% load feincms_tags %}
+{{ feincms_page}}
+<div class="box fullpromo">
+{{ request.get_full_path }}
+	 <h2>{{ content.title }}</h2>
+	 <div class="whitewrap">
+	    <ul class="newsfeed">
+	        {% for new in news %}
+            <li>
+	            <h4><a href="{{ new.get_absolute_url_latest }}">{{ new.headline }}</a></h4>
+	            <p>
+                    <em>{{ new.pub_date|date:'d-m-Y' }}</em><br>
+	                {{ new.summary|safe|truncatechars:100 }}
+                </p>
+	        </li>
+            {% endfor%}
+	    </ul>
+	 </div>
+</div>
