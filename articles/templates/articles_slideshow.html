@@ -1,0 +1,67 @@
+<div class="box">
+    <!--<div class="slideshow" id="flavor_2"></div>-->
+    <div id="owl" class="owl-carousel">
+        {% for article in articles %}    
+            <div class="item">
+            
+                <a class='photo_link' href='{{ article.get_absolute_url_slideshow }}' title='{{ article.title }} | Athens Warriors Hockey Team'>
+                    <img class='photo' src='{% if article.gallery_image%}{{ article.gallery_image.get_absolute_url }}{% else %}{{ article.image.get_absolute_url }}{% endif %}' alt='{{ article.title }}'/>
+                </a>
+                <div class="mask">
+                    <a href='{{ article.get_absolute_url_slideshow }}'>{{ article.title|safe }}</a>
+                </div>
+
+            </div>
+       {% endfor %}
+    </div>
+</div>
+
+<script>
+    //http://www.agilecarousel.com/
+var data=[
+{% for article in articles %}    
+{
+      "content": "<div class='slide_inner'><a class='photo_link' href='{{ article.get_absolute_url_slideshow }}' title='{{ article.title }} | Athens Warriors Hockey Team'><img class='photo' src='{% if article.gallery_image%}{{ article.gallery_image.get_absolute_url }}{% else %}{{ article.image.get_absolute_url }}{% endif %}' alt='{{ article.title }}'></a></div>",
+      "content_button": "<div class='thumb'><div class='outer-mask'><div class='mask'><img src='{% if article.gallery_image%}{{ article.gallery_image.get_absolute_url }}{% else %}{{ article.image.get_absolute_url }}{% endif %}' alt='{{ article.title }}'></div></div></div><p>{{ article.title|truncatechars:36|safe }}</p>"
+},
+{% endfor %}
+]
+
+
+$(document).ready(function(){
+
+    $("#owl").owlCarousel({
+ 
+        navigation : true, // Show next and prev buttons
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        singleItem:true,
+        //autoPlay: true,
+ 
+      // "singleItem:true" is a shortcut for:
+      // items : 1, 
+      // itemsDesktop : false,
+      // itemsDesktopSmall : false,
+      // itemsTablet: false,
+      // itemsMobile : false
+ 
+  });
+
+		 $("#flavor_2").agile_carousel({
+            carousel_data: data,
+            carousel_outer_height: 400,
+            carousel_height: 400,
+            slide_height: 300,
+            carousel_outer_width: 662,
+            slide_width: 662,
+            transition_type: "fade",
+            transition_time: 600,
+            timer: 10000,
+            continuous_scrolling: true,
+            control_set_1: "numbered_buttons,previous_button,pause_button,next_button",
+            control_set_2: "content_buttons",
+            change_on_hover: "content_buttons"
+        });
+
+});
+</script>
