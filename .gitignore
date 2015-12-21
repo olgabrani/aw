@@ -8,3 +8,8 @@ bin/
 *.sqlite3
 aw/local.py
 
+**/.sass-cache
+**/.sass-cache/*
+
+**/stylesheets
+**/stylesheets/*
