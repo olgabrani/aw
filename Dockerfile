@@ -1,9 +1,13 @@
 FROM debian
 
 RUN apt-get update && apt-get install -y python-pip python-dev libjpeg-dev zlib1g-dev
+RUN apt-get install -y ruby-full
+RUN gem install compass
 
 ADD . /src
 WORKDIR /src
+
+RUN cd aw/static && compass compile
 
 RUN pip install -r requirements.txt
 
