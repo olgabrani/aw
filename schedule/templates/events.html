@@ -1,0 +1,36 @@
+{% load applicationcontent_tags %}
+<div class="box fullpromo">
+    <h3 style="text-align:center;">Ημερολόγιο</h3>
+    <div id="eventCalendarInline"></div>
+</div>
+<!--http://www.vissit.com/jquery-event-calendar-plugin-english-version-->
+<script>
+	var eventsInline = [
+		{% for e in events%}
+			{
+			"date":"{{ e.pub_date|date:"U" }}000",
+			"title":"{{ e.title }}",
+			"type":"{{ e.category }}",
+			"description":"none",
+			"url":"{{ e.link}}"
+			
+			},	
+		{% endfor %}
+	]
+    $("#eventCalendarInline").eventCalendar({
+	    jsonData: eventsInline,
+	    eventsLimit: 2,
+	    monthNames: [ "Ιανουάριος", "Φεβρουάριος", "Μάρτιος", "Απρίλιος", "Mάιος", "Ιούνιος",
+    "Ιούλιος", "Αύγουστος", "Σεπτέμβρης", "Οκτώβρης", "Νοέμβρης", "Δεκέμβρης" ],
+  	    dayNames: [ 'Κυριακή','Δευτέρα','Τρίτη','Τετάρτη', 'Πέμπτη','Παρασκευή','Σάββατο' ],
+  	    dayNamesShort: [ 'Κυρ','Δευ','Τρι','Τετ','Πεμ', 'Παρ','Σαβ' ],		
+  	    txt_noEvents: "Καμία δραστηριότητα",
+  txt_SpecificEvents_prev: "",
+  txt_SpecificEvents_after: "",
+  txt_next: "Επόμενο",
+  txt_prev: "Προηγούμενο",
+  txt_NextEvents: "Επόμενες δραστηριότητες:",
+  txt_GoToEventUrl: "",
+	});
+
+</script>
