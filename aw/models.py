@@ -24,6 +24,13 @@ from feincms.content.richtext.models import RichTextContent
 from feincms.content.section.models import SectionContent
 from feincms.content.contactform.models import ContactFormContent
 
+from news.models import New, LatestNews
+from articles.models import ArticlesSlideshow
+from players.models import Player
+from schedule.models import Event
+from gallery.models import GalleryContent, Gallery
+
+
 Page.register_templates({
     'key': 'base',
     'title': 'Base Template',
@@ -48,6 +55,10 @@ Page.create_content_type(RichTextContent)
 Page.create_content_type(ImageContent, POSITION_CHOICES=(
     ('default', 'Default position'),
     ))
+
+Page.create_content_type(LatestNews)
+Page.create_content_type(ArticlesSlideshow)
+Page.create_content_type(GalleryContent)
 
 def get_admin_fields(form, *args, **kwargs):
     return {
