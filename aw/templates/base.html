@@ -1,0 +1,122 @@
+{% load applicationcontent_tags feincms_tags feincms_page_tags %}
+{% load aw_extras %}
+<!DOCTYPE html>
+<html lang="el">
+<head>
+
+{% block page_title %}
+<title>{{ APP.title }} | {{ feincms_page.title }}</title>
+{% endblock %}
+
+{% include "header.html" %}
+{% block meta_extra %}
+{% endblock %}
+
+ <style>
+ {{APP.extra_styles}}
+
+ </style>
+
+
+</head>
+<body style="background-image:url('{{ APP.background_image.get_absolute_url }}')">
+<!--
+www.athenswarriors.gr
+Design and Development by Aris Papadopoulos & Olga Brani
+-->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=122217944591817&version=v2.3";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="topBar">
+    <div class="wrapper clearfix">
+        <p class="options">
+            <a href="https://plus.google.com/106337869588902599272" rel="publisher"><img src="{{ STATIC_URL }}images/warriors-googleplus.png" alt="google+" width="29" height="29"></a>
+            <a href="http://www.facebook.com/{{ APP.facebook_username }}" target="_blank"><img src="{{ STATIC_URL }}images/warriors-facebook.png" alt="facebook" width="29" height="29"></a>
+            <a href="https://twitter.com/{{ APP.twitter_username }}" target="_blank"><img src="{{ STATIC_URL }}images/warriors-twitter.png" alt="twitter" width="29" height="29"></a>
+        </p>
+        <p class="date">{% now  "l d M Y" %}</p>
+        <div class="fb-like" data-href="https://www.facebook.com/AthensWarriors" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+    </div>
+</div>
+<div class="wrapper">
+
+{% if APP.ad_image %}
+    <div class="topAd"> 
+        <a href="APP.ad_link" target="_blank">
+            <img src="{{ APP.ad_image.get_absolute_url }}" border="0" alt="Click Here!" />
+        </a>
+    </div>
+    {% endif %} 
+    <div id="logo">
+        {% if feincms_page.get_absolute_url == '/' %}
+            <h1>
+        {% endif %}
+        <a href="{% feincms_parentlink of feincms_page level=1 %}">
+            {% if APP.logo  %}
+            <img src="{{ APP.logo.get_absolute_url }}" alt="{{ APP.title }}" width="990" height="100" />
+            {% else %}
+                <img src="{{STATIC_URL}}/images/logo.png" alt=""/>
+            {% endif %}
+        </a>
+        {% if feincms_page.get_absolute_url == '/' %}
+            </h1>
+        {% endif %}
+    </div>    
+    <div id="logo1">
+       <h1><a href="{% feincms_parentlink of feincms_page level=1 %}" title="Athens Warriors homepage">Athens Warriors Hockey club</a></h1>
+       <h2><a href="{% feincms_parentlink of feincms_page level=1 %}" title="Athens Warriors homepage"><span>&nbsp;</span></a></h2> 
+    </div>
+
+   {% block page.nav %}
+    <nav class="nav-wrapper">
+        <a href="#menu" class="menu-icon"><span>Menu</span></a>
+
+        <ul class="mainNav">                
+        {% feincms_nav feincms_page level=2 depth=1 as sublevel %}
+        {% for p in sublevel %}
+            <li class="{% if p|is_equal_or_parent_of:feincms_page %}active{% endif %}">
+                <a href="{{ p.get_absolute_url }}">{{ p.title }}</a>
+                {% feincms_nav p level=3 depth=1 as sublevel %}
+                <ul>
+                {% for sp in sublevel %}
+                    <li class="{% if sp|is_equal_or_parent_of:feincms_page %}active{% endif %}"><a href="{{ sp.get_absolute_url }}">{{ sp.title }}</a></li>
+                {% endfor %}
+                </ul>                        
+            </li>
+        {% endfor %}
+        </ul>
+    </nav>            
+    {% endblock %}
+        
+    <div class="maincontent clearfix">
+        
+       <div class="ltcol">
+            {% block sitemap %}{% endblock %}		
+            {% block content %}
+                {% feincms_render_region feincms_page "main" request %}
+            {% endblock %}
+        </div>    
+        <div class="rtcol">
+            {% block sidebar %}
+                {% feincms_render_region feincms_page "sidebar" request %}
+            {% endblock %}
+        </div>
+ 
+    </div>    
+   {% include "footer.html" %}
+</div>
+<script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName("script")[0];
+a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0016/3460.js?"+Math.floor(new Date().getTime()/3600000);
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+
+</body>
+</html> 

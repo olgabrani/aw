@@ -1,0 +1,16 @@
+{% load applicationcontent_tags %}
+<div class="box">
+     <div class="whitewrap">
+        <div class="content">
+           <h1>NEA</h1>
+	   <div class="entries-list">
+	      <ul>
+		{% for category in cateogory_list %}    
+		    <li>{{ category }}<li>
+		{% endfor %}
+	    	</ul>
+  
+		</div>  
+         </div>
+     </div>
+ </div>

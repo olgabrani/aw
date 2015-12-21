@@ -1,0 +1,20 @@
+{% load applicationcontent_tags feincms_tags feincms_page_tags %}
+{% load aw_extras %}
+ <div id="footer">  
+    <div class="wrapper">
+        {% block bottom %}
+            {% feincms_render_region feincms_page "bottom" request %}
+        {% endblock %}
+        <p class="copywrite">&copy; Athens Warriors 2013-2015</p>
+        <nav>{{OLGA}}
+            <ul>
+                <li><a href="{% feincms_parentlink of feincms_page level=1 %}">Αρχική</a></li>
+                <li><a href="/epikoinwnia/">Επικοινωνία</a></li>
+                <li><a href="{{ GLOBAL_VARS|lookup:'SITEMAP_URL'}}">Sitemap</a></li>
+                <li><a href="{{ GLOBAL_VARS|lookup:'FAQ_URL'}}">FAQ</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
