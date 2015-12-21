@@ -1,3 +1,4 @@
+#-*- encoding:utf-8 -*-
 """
 Django settings for aw project.
 
@@ -62,7 +63,9 @@ INSTALLED_APPS = (
     'feincms.module.medialibrary',
 
     'aw',
-
+    'news',
+    'articles',
+    'schedule',
     'players',
 )
 
@@ -109,3 +112,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# WIP
+NEWS_PAGINATOR ='4'
+
+# WIP use flatpages
+GLOBAL_VARS = {
+    'FAQ_URL': '/hockey-world/faq/', # for footer
+    'SITEMAP_URL' : '/sitemap/', # for footer
+    'NEWS_URL' :'neaanakoinwseis', #for latest news
+    'ARTICLES_URL' :'ar8ra', #for article slideshow
+    }
+
+# WIP: use i18n
+WORDS = {
+    'SHOW_MORE' : 'Διαβάστε περισσότερα',
+    'BACK' : 'Επιστροφή'
+    }
