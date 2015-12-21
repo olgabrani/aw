@@ -67,6 +67,7 @@ INSTALLED_APPS = (
     'articles',
     'schedule',
     'players',
+    'gallery',
 )
 
 MIDDLEWARE_CLASSES = (
