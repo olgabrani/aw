@@ -1,7 +1,7 @@
 from django.contrib import admin
 from feincms.admin import tree_editor
 
-from aw.models import Category
+from aw.models import Category, Reporter, Application
 
 
 class CategoryAdmin(tree_editor.TreeEditor):
@@ -12,6 +12,6 @@ class CategoryAdmin(tree_editor.TreeEditor):
         }
 
 admin.site.register(Category, CategoryAdmin)
-# admin.site.register(Reporter)
-# admin.site.register(Application)
+admin.site.register(Reporter)
+admin.site.register(Application)
 

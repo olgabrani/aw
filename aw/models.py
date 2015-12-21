@@ -163,3 +163,39 @@ Page.create_content_type(Simple, regions=('main','bottom'))
 Page.create_content_type(Single)
 Page.create_content_type(Advertisment) 
 Entry.create_content_type(Simple)
+
+class Reporter(models.Model):
+    full_name = models.CharField(max_length=100, blank=False)
+
+    def __unicode__(self):
+        return self.full_name
+
+# add m2m field to entry so it shows up in entry admin
+Entry.add_to_class('categories', models.ManyToManyField(Category, blank=True, null=True))
+Entry.add_to_class('reporters', models.ManyToManyField(Reporter, blank=True, null=True))
+EntryAdmin.list_filter += ('categories','reporters')
+
+class Application(models.Model):
+    """
+    Application object set general settings for the website,
+    such as background image, favicon, facebook group etc.
+    """
+    title = models.CharField(max_length=255, blank=False, null=False)
+    logo = MediaFileForeignKey(MediaFile, blank=True, null=True)
+    favicon = MediaFileForeignKey(MediaFile, blank=True, null=True, related_name="as_favicon")
+    background_image = MediaFileForeignKey(MediaFile, blank=True, null=True, related_name="as_background_image")
+    ad_image = MediaFileForeignKey(MediaFile, blank=True, null=True, related_name="as_ad_image")
+    twitter_username = models.CharField(max_length=255, blank=True, help_text="Just the username that you use in your twitter account")
+    facebook_username = models.CharField(max_length=255, blank=True, help_text="Insert the url of your facebook page, eg. http://www.facebook.com/groups/324224" )
+    ad_link = models.CharField(max_length=255, blank=True)
+    extra_styles = models.TextField(default="", blank=True)
+    footer_bottom = models.TextField(default="", blank=True)
+    roster_image = MediaFileForeignKey(MediaFile, blank=True, null=True, related_name="as_roster_image")
+
+
+    @classmethod
+    def current(cls):
+        return cls.objects.get(pk=1)
+
+    def __unicode__(self):
+        return self.title
