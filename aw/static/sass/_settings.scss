@@ -1,0 +1,69 @@
+// palette
+$main-color:            #F1690E; //orange
+$font-color-light:      #fff;
+$font-color-dark:       #000;
+
+$charbon:               #4b4b4b;
+$gray-1:                #000;
+$gray-2:                #252525;
+$gray-3:                #636363;
+
+
+$bg-color:              #000;
+$font-color:            $font-color-dark;
+$link-color:            $main-color;
+$link-color-hover:      $main-color;
+
+$default-padding:       15px;
+$carousel-width:        620px;
+
+$topbar_h:              40px;
+$topnav_h:              30px;
+$topbar-border-color:   $gray-3;
+$h1-height:             42px;
+
+$box-bg:                $charbon;
+$box-border-color:      #ccc;
+
+$footer-font-size:      15px;
+
+
+$small-col-width:       314px;
+$main-width:            990px;
+$main-width-min:        $main-width - 1px;
+
+
+// gradient settings
+$topbar-gradient-top:       $gray-1;    
+$topbar-gradient-bottom:    $gray-2;
+$title-gradient-top:        $gray-1;
+$title-gradient-bottom:     $gray-2;
+
+// event calendar colors
+$calendar-event:        #F0CD51;
+$calendar-inline:       #89B814;
+$calendar-game:         #F53C19;
+$calendar-ice:          #449fb2;
+
+// repsonsive 
+
+$bp-small:              640px;
+$small-range:           (0, $bp-small);
+$medium-range:          ($bp-small, $main-width);
+$large-range:           ($main-width);
+
+
+// Media Queries
+$screen: "only screen" !default;
+
+$landscape: "#{$screen} and (orientation: landscape)" !default;
+$portrait: "#{$screen} and (orientation: portrait)" !default;
+
+$small-up: $screen !default;
+$small-only: "#{$screen} and (max-width: #{$bp-small})" !default;
+
+$medium-up: "#{$screen} and (min-width:#{$bp-small})" !default;
+$medium-only: "#{$screen} and (min-width:#{$bp-small}) and (max-width:#{$main-width-min})" !default;
+
+$large-up: "#{$screen} and (min-width:#{$main-width})" !default;
+

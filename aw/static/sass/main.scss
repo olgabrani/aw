@@ -1,0 +1,25 @@
+// includes all extrenal css/sass files like 
+// eventCalendar, carousel etc
+@import "extra";
+
+@import "settings";
+// basic reset formatting
+@import "formating";
+
+
+@import "mixins";
+
+@import "topbar";
+
+@import "header";
+@import "footer";
+@import "faq";
+@import "box";
+@import "form";
+@import "pagination";
+@import "calendar";
+@import "news";
+@import "entries";
+
+@import "modules";
+

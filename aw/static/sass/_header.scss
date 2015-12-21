@@ -1,0 +1,178 @@
+.topAd  { 
+    background: pink;
+    margin:1em 0; 
+    text-align:center;
+}
+
+#logo { 
+    display: none;
+    margin:5px 0; 
+    h1 {
+        margin: 0;
+    }
+    img {
+        width: 100%;
+    
+    }
+}
+
+#logo1 {
+    height: 100px;
+    margin: 5px 0 0;
+    overflow: hidden;
+    background: url('../images/warriors-sprite.png') center top;
+    position: relative;
+    h2 {
+        @media #{$large-up} {
+            text-align: center;
+        }
+        text-align: right;
+        padding-right: 18px;
+        span {
+            background: url('../images/warriors-sprite.png') right bottom;
+            display: inline-block;
+            width: 384px;
+            height: 100px;
+            overflow: hidden;
+            @media #{$small-only}{
+                position: relative;
+                background-size: 655px;
+                height: 62px;
+                top: 23px;
+                width: 320px;
+            }
+     
+        }
+    }
+    h1 {
+      position: absolute; 
+      background: url('../images/warriors-sprite.png') left bottom;
+      height: 100px;
+      width: 108px;
+      left: 18px;
+      top: 0;
+      overflow: hidden;
+      text-indent: -3000px;
+        @media #{$small-only}{
+            background-size: 550px;
+            height: 55px;
+            top: 15px;
+            width: 66px;
+        }
+    }
+
+}
+
+.nav-wrapper {
+    background: #222;
+}
+
+
+.mainNav                                { 
+    list-style:none outside none; 
+    margin:0; 
+    padding:4px 0; 
+    line-height: $topnav_h; 
+    @media #{$large-up} {
+        background:url(../images/topnav-bg.jpg) repeat-x top ;
+        height: $topnav_h;
+    }
+    li {
+        text-align: center;
+        padding: 0 10px;
+        font-size: 12px;
+        @media #{$large-up} {
+            height: 100% ;
+            border-left: 1px solid #ccc;
+        }
+        display: inline-block;
+        position: relative;
+        background: transparent;
+        &:first-child {
+            border: 0 none;
+        }
+        &:hover, 
+        &:active {
+            z-index: 30;
+            background: url(../images/topnav-bg-hover.jpg) repeat-x top center;
+        }
+        a:focus {
+            outline: none;
+        }
+    }
+}
+.mainNav li a                           { font-weight:bold; color:#fff; text-decoration:none; display:block;}
+.mainNav li a:hover,
+.mainNav li.active >  a                 { color: $main-color; }
+.mainNav ul                             { height: 28px; max-width: 350px; position: absolute; top: -999em; padding-left:2em; }
+.mainNav ul li                          { width: 286px; text-align:left; border: 0 none; height: initial}
+.mainNav li:hover                       { visibility: inherit; }
+.mainNav li:hover ul                    { left: -23px; top: 16px; z-index:30; }
+.mainNav li li,
+.mainNav li li:hover                    { background: url(../images/topnav-bg.jpg) repeat-x top }
+.mainNav li.hasSubmenu >a		{ cursor:default; background:url(../images/arrow-down.png) no-repeat right 12px; padding-right:20px; color:#fff; }
+.mainNav li.hasSubmenu >a:hover		{ color:#fff; }
+
+.menu-icon {
+    display: none;
+    position: relative;
+    padding: 0.5rem 2.22222rem 0.5rem 0.83333rem;
+    text-align: right;
+    &:focus {
+        outline: none;
+    }
+    span {
+        font-size: 18px;
+    }
+
+}
+.menu-icon span:after {
+    content: "";
+    display: block;
+    height: 0;
+    position: absolute;
+    margin-top: -8px;
+    top: 50%;
+    right: 0.83333rem;
+    box-shadow: 0 0 0 1px #FFFFFF, 0 7px 0 1px #FFFFFF, 0 14px 0 1px #FFFFFF;
+    -webkit-box-shadow: 0 0 0 1px #FFFFFF, 0 7px 0 1px #FFFFFF, 0 14px 0 1px #FFFFFF;
+    width: 16px;
+}
+
+@media #{$small-only}{
+    .menu-icon {
+        display: block;
+    }
+    .mainNav {
+        display: none;
+        > li {
+            display: block;
+            border-bottom: 1px solid #3E3D3D;
+            text-align: left;
+            font-size: 13px;
+            &:hover {
+                background: transparent;
+            }
+            &:first-child {
+                border-bottom: 1px solid #3E3D3D;
+            }
+        }
+        .hasSubmenu ul {
+            display: none;
+            position: static;
+            padding-left: 0;
+            max-width: 100%;
+            height: auto;
+            li {
+                background: transparent;
+                width: 100%;
+            }
+
+        }
+        .hasSubmenu:hover  ul {
+            
+        }
+    }
+    
+}
+

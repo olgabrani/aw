@@ -1,0 +1,49 @@
+form {
+    margin: 2em 0;
+    .row {
+        margin: 0 0 1em;
+        position: relative;
+    }
+    label {
+        width: 120px;
+        display: inline-block;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+    input,
+    textarea {
+        width: 240px;
+        padding: 5px 10px;
+        border-radius: 2px;
+        border: 1px solid $charbon;
+    }
+    textarea {
+        height: 150px;
+    }
+    input[type="submit"] {
+        margin-left: 125px;
+        width: auto;
+        border: 0 none;
+        color: $font-color-light;
+        border-radius: 2px;
+        @include box-shadow(0 0 5px #888);
+        background: $main-color;
+        margin-top: 2em;
+        padding: 8px 20px;
+        &:hover {
+            background: $charbon;
+        }
+    }
+    .errorlist {
+        color: red;
+        li {
+            padding-left: 125px;
+            font-style: italic;
+        }
+    }
+    .with-errors input, 
+    .with-errors textarea {
+        border-color: red;
+    }
+
+}

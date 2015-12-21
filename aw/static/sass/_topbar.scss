@@ -1,0 +1,29 @@
+#topBar {
+    @include linear-gradient($topbar-gradient-top, $topbar-gradient-bottom);
+    border-bottom: 1px solid $topbar-border-color;
+    color: $font-color-light;
+    padding: 5px 0;
+    p {
+        margin: 0;
+        font-size: 1.083em;
+    }
+    .date {
+        display: inline-block;
+        margin-right: 2em;
+        @media #{$small-only} {
+            display: none;
+        }
+    }
+    .fb-like {
+        display: inline-block;
+        position: relative;
+        top: 5px;
+    }
+    .options {
+        float: right;
+        a {
+            margin-left: 1em;
+        }
+    }
+}
+

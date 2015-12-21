@@ -1,0 +1,77 @@
+/* extra styles for calendar  */
+
+@mixin calendar-day($color){
+    background-color: lighten($color, 8%);
+    @include box-shadow(5px 5px 10px lighten($color, 10%) inset);
+    &:hover {
+        background-color: $color;
+    }
+}
+
+
+#eventCalendarInline {
+    ul {
+        margin: 10px 5px;
+        padding-left: 0;
+    }
+    .eventsCalendar-loading {
+        margin: 5px 20px;
+        position: static;
+    }
+    .eventsCalendar-list li {
+        span.eventTitle {
+            color: $charbon;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    .explain {
+        margin: 10px 10px 0;
+        span {
+            display:inline-block; 
+            height:15px; 
+            width:15px; 
+            margin:0 5px; 
+            border:2px solid #ccc; 
+        }
+        .EVE {
+            background-color: $calendar-event;
+        }
+        .INL {
+            background-color:  $calendar-ice;
+        }
+        .GAM {
+            background-color: $calendar-game;
+        }
+        .ICE {
+            background-color: $calendar-ice;
+        }
+    }
+    .eventsCalendar-daysList li {
+        a {
+            text-decoration: none;
+            @include box-shadow(none);
+        }
+        &.dayWithEvents {
+            a {
+                text-shadow: none;
+            }
+            &.EVE a {
+                @include calendar-day($calendar-event);
+            }
+            &.INL a {
+                @include calendar-day($calendar-ice);
+            }
+            &.GAM a {
+                @include calendar-day($calendar-game);
+            }
+            &.ICE a {
+                @include calendar-day($calendar-ice);
+            }
+        }
+        &.current a {
+            background: #797979;
+        }
+    }
+}

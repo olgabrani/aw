@@ -1,0 +1,56 @@
+.pagination {
+    text-align: center;
+    ul {
+        padding: 0;
+        li {
+            margin: 0 3px;
+            display: none;
+            a {
+                display: block;
+                padding: 4px 8px;
+                font-weight: bold;
+                color: $charbon;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+            &:hover, &.current {
+                background: $main-color;
+                a {
+                    color: $font-color-light;
+                }
+            }
+            &.arrow {
+                display: inline-block;
+                &:hover {
+                    background: transparent;
+                    a {
+                        background-image: url(../images/pagination-arrow-on.png);
+                    }
+                }
+                a {
+                    background: url(../images/pagination-arrow.png) top left;
+                    width: 13px;
+                    height: 20px;
+                    padding: 0;
+                }
+            }
+            &.next {
+                a {
+                    background-position: top right;
+                }
+            }
+            &.disable {
+                &:hover a {
+                    background-image: url(../images/pagination-arrow.png);
+                }
+            }
+            @media #{$medium-up}{
+                display: inline-block;
+            
+            }
+
+        }
+    }
+}
+
