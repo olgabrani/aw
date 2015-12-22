@@ -20,7 +20,7 @@ RUN pip install Django==1.6 \
 ADD . /src
 WORKDIR /src
 
-RUN cd aw/static && compass compile
+RUN cd /src/aw/static && compass compile
 
 RUN python manage.py syncdb --noinput
 RUN python manage.py migrate
