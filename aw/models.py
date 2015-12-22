@@ -29,6 +29,7 @@ from articles.models import ArticlesSlideshow
 from players.models import Player
 from schedule.models import Event
 from gallery.models import GalleryContent, Gallery
+from forms import MyContactForm
 
 
 Page.register_templates({
@@ -210,3 +211,62 @@ class Application(models.Model):
 
     def __unicode__(self):
         return self.title
+
+class MyContactFormContent(models.Model):
+    """
+    A preliminary effort to make my own contact form.
+    MyContactForm form lives  in forms.py file
+    """
+    form = MyContactForm
+
+    text = models.TextField()
+    thanks_text = models.TextField(default='Ευχαριστούμε!')
+    class Meta:
+        abstract = True
+        verbose_name = _('contact form')
+        verbose_name_plural = _('contact forms')
+
+    @classmethod
+    def initialize_type(cls, form=None):
+        if form:
+            cls.form = form
+
+    def process(self, request, **kwargs):
+        if request.GET.get('_cf_thanks'):
+            self.rendered_output = render_to_string('contactform/thanks.html', {
+        'content':self,
+        },
+                context_instance=RequestContext(request))
+            return
+
+        if request.method == 'POST':
+            form = self.form(request.POST)
+
+            if form.is_valid():
+                send_mail(
+                    'subject',
+                    render_to_string('contactform/email.txt', {
+                        'data': form.cleaned_data,
+                        }),
+                    form.cleaned_data['email'],
+                    ['athenswarriorscontact@gmail.com'],
+                    fail_silently=True)
+
+                return HttpResponseRedirect('?_cf_thanks=1')
+
+        else:
+            initial = {'name': 'your name'}
+            if request.user.is_authenticated():
+                initial['email'] = request.user.email
+                initial['name'] = request.user.get_full_name()
+
+        form = self.form(initial=initial)
+        self.rendered_output = render_to_string('contactform/form.html', {
+            'content': self,
+            'form': form,
+            }, context_instance=RequestContext(request))
+
+    def render(self, **kwargs):
+        return getattr(self, 'rendered_output', u'')
+
+Page.create_content_type(MyContactFormContent)
