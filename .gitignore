@@ -6,7 +6,7 @@
 *.pyc
 bin/
 *.sqlite3
-aw/local.py
+**/local_settings.py
 
 **/.sass-cache
 **/.sass-cache/*
@@ -16,3 +16,4 @@ aw/local.py
 
 **/media
 **/media/*
+
