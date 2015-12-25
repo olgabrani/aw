@@ -19,6 +19,7 @@ class New(models.Model):
 
     def get_absolute_url(self):
         return reverse('news.views.new_details', 'news.urls', (), {
+            'latest_url': settings.GLOBAL_VARS['NEWS_URL'],
             'pk': self.pk,
         })
 

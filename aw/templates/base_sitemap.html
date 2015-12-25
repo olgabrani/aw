@@ -11,7 +11,8 @@
 	<ul>
 	    <li>
 	        <a href="{%  feincms_parentlink of feincms_page level=1 %}">Αρχική Σελίδα</a>
-	{% feincms_navigation of feincms_page as sitemap level=2,depth=4 %}
+
+        {% feincms_nav feincms_page level=2 depth=4 as sitemap %}
 		{% for p,structure in sitemap|tree_info %}
    			{% if structure.new_level %}
 				<ul><li>
