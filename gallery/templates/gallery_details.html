@@ -1,0 +1,14 @@
+{% load feincms_thumbnail i18n %}
+<div class="main-gallery">
+    <h2>{{ gallery.title }}</h2>
+    <p>{{ gallery.description }}</p>
+    <div class="gallery-list">
+    	<ul class="clearfix">
+			{% for image in gallery.ordered_images %}
+			<li>
+				<a href="{{ image.file.url }}" class="fancybox" rel="gallery{{ gallery.pk }}"><img src="{{ image.file.name|cropscale:'140x105' }}" alt="{{ image.translation.caption }}" ></a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>

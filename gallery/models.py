@@ -16,8 +16,10 @@ from .specs.legacy import DEFAULT_SPECS
 __all__ = ['Gallery', 'GalleryMediaFile', 'GalleryContent', 'DEFAULT_SPECS']
 
 class Gallery(models.Model):
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=200)
+    description = models.CharField(max_length=300,blank=True, null=True )
     images = models.ManyToManyField(MediaFile, through='GalleryMediaFile')
+    order = models.IntegerField(blank = True, null = True, default=0)
     
     def ordered_images(self):
         return self.images.select_related().all()\

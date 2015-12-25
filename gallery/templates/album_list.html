@@ -1,0 +1,14 @@
+{% load feincms_thumbnail i18n %}
+<div class="album-list">
+    <h3>Περισσότερα άλμπουμς</h3>
+	<ul class="clearfix">
+{% for g in gallery_list %}
+	<li>
+	    <a href="{{ g.get_absolute_url }}" title="{{ g.title }}">
+		<img src="{{ g.ordered_images.0.file.name|cropscale:'140x105' }}" alt="{{ g.title }}" width="140" height="105">
+	    </a>
+	    <p>{{ g.title}}</p>
+	</li>
+{% endfor %}
+	</ul>
+</div>
